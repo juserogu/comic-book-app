@@ -24,13 +24,13 @@ class ItemList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(children: <Widget>[
-      Expanded(
-        child: _detailsContain(context),
-      ),
-      Expanded(
-        child: _imageComic(context),
-      ),
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+
+      children: <Widget>[      
+        _detailsContain(context),          
+       _imageComic(context),
+     
     ]);
   }
 
@@ -38,8 +38,9 @@ class ItemList extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return Container(
       height: size.height * 0.8,
-      width: size.width * 0.4,
+      width: size.width * 0.6,
       child: FadeInImage(
+          fit: BoxFit.fill,
           placeholder: AssetImage('assets/no-image.png'),
           image: NetworkImage(detail?.image?.originalUrl ?? '')),
     );
@@ -49,23 +50,23 @@ class ItemList extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return Container(
       height: size.height * 0.8,
-      width: size.width * 0.6,
+      width: size.width * 0.4,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[
           Column(children: [
-            Text('Characters'),
-            Divider(),
+            Text('Characters', style: TextStyle(fontWeight: FontWeight.bold),),
+            Divider(thickness: 10,),
             _createCharacter(detail.characterCredits),
           ]),
           Column(children: [
-            Text('Teams'),
-            Divider(),
+            Text('Teams',style: TextStyle(fontWeight: FontWeight.bold)),
+            Divider(thickness: 10),
             _createCharacter(detail.teamCredits),
           ]),
           Column(children: [
-            Text('Locations'),
-            Divider(),
+            Text('Locations',style: TextStyle(fontWeight: FontWeight.bold)),
+            Divider(thickness: 10),
             _createCharacter(detail.locationCredits),
           ]),
         ],
@@ -75,9 +76,11 @@ class ItemList extends StatelessWidget {
 
   Widget _createCharacter(List<Volume> characterCredits) {
     return Wrap(
+      runSpacing: 20,
+      spacing: 4,
         children: characterCredits.map((e) {
-      return Padding(
-          padding: EdgeInsets.symmetric(horizontal: 4.0),
+      return Container(        
+          padding: EdgeInsets.symmetric(horizontal: 4.0),          
           child: Text(e?.name ?? ''));
     }).toList());
   }

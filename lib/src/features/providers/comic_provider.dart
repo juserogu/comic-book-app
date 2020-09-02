@@ -19,10 +19,9 @@ class ComicsProvider {
     }
   }
 
-  Future<ResultsDetail> getComicsDetails(String comicId) async {
-    var comicDetailUrl = '$comicId?api_key=$_apikey&format=json';
-    print(comicDetailUrl);
-    final response = await http.get(comicDetailUrl);
+  Future<ResultsDetail> getComicsDetails(String comicId) async {    
+   
+    final response = await http.get('$comicId?api_key=$_apikey&format=json');
     if (response.statusCode == 200) {
       var getResponse = Detail.fromJson(json.decode(response.body));
       return getResponse.results;

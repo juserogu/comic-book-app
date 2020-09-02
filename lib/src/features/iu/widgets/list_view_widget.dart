@@ -45,8 +45,9 @@ class _ItemList extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 FadeInImage(
-                  width: 150,
+                  width: 130,
                   height: 150,
+                  fit: BoxFit.fill,
                   placeholder: AssetImage('assets/no-image.jpg'),
                   image: NetworkImage(
                     result.image.originalUrl,

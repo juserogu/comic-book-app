@@ -44,19 +44,20 @@ class _ItemList extends StatelessWidget {
     child: Card(
       clipBehavior: Clip.antiAlias,
       elevation: 1,
-      child: Container(
+      child: Container(        
         padding: EdgeInsets.only(top:5),
         child: Column(
            children: <Widget>[
             FadeInImage(
+              fit: BoxFit.cover,
                   width: 110,
-                  height: 110,
+                  height: 100,
                   placeholder: AssetImage('assets/no-image.jpg'),
                   image: NetworkImage(
                     result.image.originalUrl,
                   )),
             Text(result?.name ?? 'No name', overflow: TextOverflow.ellipsis,textAlign: TextAlign.center,),
-            Text('# ${result.issueNumber}'),
+            Text('#${result.issueNumber}'),
             Text(result?.dateAdded ?? 'No date', style: TextStyle(color: Colors.grey),)
            ],
           ),

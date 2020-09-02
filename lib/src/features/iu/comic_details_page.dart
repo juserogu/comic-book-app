@@ -19,11 +19,10 @@ class ComicDetailsPage extends StatelessWidget {
         body: FutureBuilder<ResultsDetail>(
             future: comicProvider.getComicsDetails(comicId),
             builder: (BuildContext context, AsyncSnapshot snapshot) {
-              if (snapshot.hasData) {
-                print('HAS DATA');
+              if (snapshot.hasData) {                
                 return DetailWidget(comic: snapshot.data);
               } else {
-                print('NO DATA');
+               
                 return Container(
                     child: Center(child: CircularProgressIndicator()));
               }
